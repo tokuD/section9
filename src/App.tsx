@@ -3,6 +3,7 @@ import styles from "./App.module.css";
 import { useEffect, useState } from "react";
 import { User } from "./types/User";
 import UserList from "./components/UserList";
+import Modal from "./components/Modal";
 
 const initUsers: User[] = [
   {
@@ -19,8 +20,25 @@ const initUsers: User[] = [
 
 const sessionKey = "users";
 
+type ModalDescription = {
+  message: string;
+  isOpen: boolean;
+};
+
 function App() {
   const [users, setUsers] = useState<User[]>(initUsers);
+  const [modal, setModal] = useState<ModalDescription>({
+    message: "",
+    isOpen: false,
+  });
+
+  const modalOpenHandler = (message: string) => {
+    setModal({ message: message, isOpen: true });
+  };
+
+  const modalCloseHandler = () => {
+    setModal({ message: "", isOpen: false });
+  };
 
   useEffect(() => {
     const usersJson = sessionStorage.getItem(sessionKey);
@@ -44,8 +62,14 @@ function App() {
 
   return (
     <main className={styles.container}>
-      <Card addUser={addUser} />
+      <Card addUser={addUser} modalOpenHandler={modalOpenHandler} />
       <UserList users={users} />
+      {modal.isOpen && (
+        <Modal
+          message={modal.message}
+          closeHander={modalCloseHandler}
+        />
+      )}
     </main>
   );
 }
