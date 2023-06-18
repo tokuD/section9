@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import Button from "./Button";
 import styles from "./Card.module.css";
 import { User } from "../types/User";
-import { CardProps } from "../types/CardProps";
 
 const initUser: User = {
   username: "",
   age: 0,
   id: "",
+};
+
+type CardProps = {
+  addUser: (user: User) => void;
 };
 
 const Card = (props: CardProps) => {
@@ -28,6 +31,7 @@ const Card = (props: CardProps) => {
       return;
     }
     addUser(user);
+    setUser(initUser);
   };
 
   return (
