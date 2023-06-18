@@ -1,0 +1,14 @@
+:root {
+  --primary: #222831;
+  --secondary: #393e46;
+  --blue: #00adb5;
+  --white: #eeeeee;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}

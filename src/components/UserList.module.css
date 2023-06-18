@@ -1,0 +1,19 @@
+.container {
+  background-color: var(--white);
+  width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+  border-radius: 12px;
+  color: var(--primary);
+}
+
+.row {
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  margin-bottom: 6px;
+  padding: 4px 8px;
+}
+
+.row:last-child {
+  margin-bottom: 0;
+}
