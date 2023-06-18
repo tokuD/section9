@@ -3,15 +3,16 @@ import styles from "./Button.module.css";
 
 type ButtonProps = {
   children: React.ReactNode;
+  className?: string;
   submitHandler: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
 };
 
 const Button = (props: ButtonProps) => {
-  const { children, submitHandler } = props;
+  const { children, submitHandler, className } = props;
   return (
-    <button className={styles.button} onClick={submitHandler}>
+    <button className={`${styles.button} ${className}`} onClick={submitHandler}>
       {children}
     </button>
   );

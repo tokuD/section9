@@ -11,10 +11,11 @@ const initUser: User = {
 
 type CardProps = {
   addUser: (user: User) => void;
+  modalOpenHandler: (message: string) => void;
 };
 
 const Card = (props: CardProps) => {
-  const { addUser } = props;
+  const { addUser, modalOpenHandler } = props;
   const [user, setUser] = useState<User>(initUser);
 
   const submitHandler = (
@@ -22,12 +23,16 @@ const Card = (props: CardProps) => {
   ) => {
     event.preventDefault();
     // validation
+    if (user.username.trim().length === 0 && user.age < 0) {
+      modalOpenHandler("Please enter valid username and age.");
+      return;
+    }
     if (user.username.trim().length === 0) {
-      alert("Invalid username");
+      modalOpenHandler("Please enter a valid username.");
       return;
     }
     if (user.age < 0) {
-      alert("Invalid age");
+      modalOpenHandler("Please enter a valid age.");
       return;
     }
     addUser(user);
